@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="layout.xhtml">
+	<ui:define name="content">
+		<h:form id="userForm">
+			<p:panel header="User">
+				<h:panelGrid columns="1">
+					<h:outputText id="out" value="#{userView.result}" />
+					<p:outputLabel for="name" value="Name: " />
+					<p:inputText id="name" value="#{userView.user.name}">
+						<p:ajax event="keyup" update="out"
+							listener="#{userView.validate}" />
+					</p:inputText>
+					<p:outputLabel for="lastName" value="Last Name: " />
+					<p:inputText id="lastName" value="#{userView.user.lastName}" />
+					<h:commandButton value="Save" action="#{userView.save}" />
+				</h:panelGrid>
+
+				<p:separator />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
