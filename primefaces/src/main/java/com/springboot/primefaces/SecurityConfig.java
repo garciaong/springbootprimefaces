@@ -10,10 +10,12 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -47,19 +49,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		RequestMatcher csrfRequestMatcher = new RequestMatcher() {
 			@Override
 			public boolean matches(HttpServletRequest request) {
-				return request.getServletPath().contains("/posted.xhtml");
+				return request.getServletPath().contains("/posted.xhtml") || 
+						request.getServletPath().contains("/testcsrf");
 			}
 		};
 	    
-		//Default enabled
-		//httpSecurity.csrf().disable();
+		//Default enabled, disable this when using custom filter for csrf rather than RequestMatcher
+		httpSecurity.csrf().disable();
 	    //Enable csrf only on some request matches
-	    httpSecurity.csrf().requireCsrfProtectionMatcher(csrfRequestMatcher);
+//	    httpSecurity.csrf()
+//	    .requireCsrfProtectionMatcher(csrfRequestMatcher);
+//	    httpSecurity.httpBasic();
 		httpSecurity.authorizeRequests().anyRequest().authenticated().and().formLogin().defaultSuccessUrl("/post.xhtml");
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-	}
+	} 
 }

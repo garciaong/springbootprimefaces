@@ -21,10 +21,9 @@
 			<input type="hidden" name="param1" value="qwe"/>
 			<input type="hidden" name="param2" value="asd"/>
 			<h:inputHidden id="abc" value="123"></h:inputHidden>
-			<input type="hidden" name="custom_csrf" value="${custom_csrf}"/>
+			<input type="hidden" name="custom_csrf" value="77fb290e8666b7d7bbf4ee16dc892778515c75bd" />
 			<p:commandButton oncomplete="openWindowWithPost()" value="PF Send"></p:commandButton>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			<input type="hidden" name="${_csrf.headerName}" value="${_csrf.token}"/>
 		</h:form>
 		<script>
 		$(document).ready(function(){
@@ -35,16 +34,15 @@
 				console.log('action:'+f.action);
 			});
 		});
-			var tabIndex = 0;
-			function openWindowWithPost() {
+			
+			function openWindowWithPost() {console.log('ok');
 				  var f = document.getElementById('form1');
-				  f.target='TheWindow'+tabIndex;
+				  f.target='TheWindow';
 				  f.action='posted.xhtml';
-				  window.open('', 'TheWindow'+tabIndex);
+				  window.open('', 'TheWindow');
 				  f.submit();
 				  f.target='';
 				  f.action='';
-				  tabIndex++;
 				}
 		</script>
 	</h:body>

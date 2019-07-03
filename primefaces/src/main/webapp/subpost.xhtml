@@ -9,8 +9,6 @@
 <ui:composition template="layout.xhtml">
 	<ui:define name="content">
 		<h:form id="form1">
-			<meta name="_csrf" content="${_csrf.token}"/>
-			<meta name="_csrf_header" content="${_csrf.headerName}"/>
 			<p:commandButton onclick="openWindowWithPost()" value="Onclick Send"/>
 			<input type="button" id="btn" data-value1="abc" value="Normal"/>
 			<input type="hidden" name="param1" value="qwe"/>
@@ -29,7 +27,7 @@
 			});
 		});
 			
-			function openWindowWithPost() {console.log('CSRF Name : '+document.querySelector("meta[name='_csrf_header']").getAttribute("content"));
+			function openWindowWithPost() {
 				  var f = document.getElementById('form1');
 				  f.target='TheWindow';
 				  f.action='posted.xhtml';

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomScopeRegisteringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
+	/**
+	 * For JSF
+	 */
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         beanFactory.registerScope(ScopeName.VIEW, new ViewScope());

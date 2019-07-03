@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>VueJs Introduction</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+	</head>
+	<body>
+		<div id="csrf-test">
+			<form @submit="formSubmit">
+				<meta th:name="${_csrf.headerName}" th:content="${_csrf.token}"/>
+				<strong>Info:</strong>
+				<input type="text" v-model="info">
+				<button>Submit</button>
+			</form>
+			<p>{{ result }}</p>
+		</div>
+		<script type = "text/javascript" src = "js/vuecsrf.js"></script>
+	</body>
+</html>
