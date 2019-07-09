@@ -46,12 +46,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new CustomFilter();
     }
 	
-//	@Bean
+	@Bean
     public Filter customCsrfFilter() {
         return new CustomCsrfFilter();
     }
 	
-	@Bean
+//	@Bean
 	public Filter noneSpringFilter() {
 		return new NoneSpringFilter();
 	}

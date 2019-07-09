@@ -10,6 +10,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Landing</title>
+		<meta name="_csrf" content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="${_csrf.headerName}"/>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"
   		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   		crossorigin="anonymous"></script>
@@ -23,8 +25,8 @@
 			<h:inputHidden id="abc" value="123"></h:inputHidden>
 			<input type="hidden" name="custom_csrf" value="${custom_csrf}"/>
 			<p:commandButton oncomplete="openWindowWithPost()" value="PF Send"></p:commandButton>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-			<input type="hidden" name="${_csrf.headerName}" value="${_csrf.token}"/>
+			<!--input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<input type="hidden" name="${_csrf.headerName}" value="${_csrf.token}"/-->
 		</h:form>
 		<script>
 		$(document).ready(function(){
@@ -46,6 +48,19 @@
 				  f.action='';
 				  tabIndex++;
 				}
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			 
+			$(document).ready(function() {
+				
+			});
+			$( "form" ).on( "submit", function() {
+				console.log('submitting post...header='+header+", token="+token);
+				var xhr = new XMLHttpRequest();
+				xhr.open()
+				});
+				
+		
 		</script>
 	</h:body>
 </f:view>
